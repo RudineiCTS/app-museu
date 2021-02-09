@@ -1,16 +1,13 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreateTransaction1612649292971
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+   // eslint-disable-line
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'Transaction',
+        name: 'transaction',
         columns: [
           {
             name: 'id',
@@ -29,11 +26,14 @@ export default class CreateTransaction1612649292971
           },
           {
             name: 'value',
-            type: 'integer',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
             name: 'category_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -48,20 +48,9 @@ export default class CreateTransaction1612649292971
         ],
       }),
     );
-    await queryRunner.createForeignKey(
-      'appointments',
-      new TableForeignKey({
-        name: 'CategoryTransaction',
-        columnNames: ['Category_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'Category',
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Transaction');
+    await queryRunner.dropTable('transaction');
   }
 }

@@ -22,7 +22,11 @@ class CreateTransactionService {
     const transactionRepository = getCustomRepository(TransactionsRepository);
     const categoryRepository = getRepository(Category);
     try {
-      const sameName = await categoryRepository.findOne({ title: category });
+      const sameName = await categoryRepository.findOne({
+        where: {
+          title: category,
+        },
+      });
       if (sameName) {
         const transaction = transactionRepository.create({
           title,
@@ -35,7 +39,7 @@ class CreateTransactionService {
         return transaction;
       }
       const newCategory = categoryRepository.create({
-        title,
+        title: category,
       });
       await categoryRepository.save(newCategory);
 

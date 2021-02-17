@@ -1,4 +1,3 @@
-// import AppError from '../errors/AppError';
 import { getCustomRepository, getRepository } from 'typeorm';
 import AppError from '../errors/AppError';
 import Category from '../models/Category';

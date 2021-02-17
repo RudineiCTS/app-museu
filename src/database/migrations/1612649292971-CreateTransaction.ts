@@ -7,7 +7,7 @@ export default class CreateTransaction1612649292971
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'transaction',
+        name: 'transactions',
         columns: [
           {
             name: 'id',

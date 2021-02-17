@@ -9,7 +9,7 @@ interface CSVTransaction {
   title: string;
   type: 'outcome' | 'income';
   value: number;
-  category: string[];
+  category: string;
 }
 
 class ImportTransactionsService {
@@ -72,7 +72,7 @@ class ImportTransactionsService {
         type: transaction.type,
         value: transaction.value,
         category: finalCategories.find(
-          category => category.title.toString === transaction.category.toString,
+          category => category.title === transaction.category,
         ),
       })),
     );

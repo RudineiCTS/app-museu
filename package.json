@@ -2,6 +2,7 @@
   "name": "desafio-06",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {"node": ">=16.0.0"},
   "license": "MIT",
   "scripts": {
     "build": "tsc",

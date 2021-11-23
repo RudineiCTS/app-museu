@@ -1,13 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateTransaction1612649292971
-  implements MigrationInterface {
+export default class createThematic1632594878985 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-   // eslint-disable-line
-    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'transactions',
+        name: 'thematic',
         columns: [
           {
             name: 'id',
@@ -21,19 +18,12 @@ export default class CreateTransaction1612649292971
             type: 'varchar',
           },
           {
-            name: 'type',
+            name: 'subtitle',
             type: 'varchar',
           },
           {
-            name: 'value',
-            type: 'decimal',
-            precision: 10,
-            scale: 2,
-          },
-          {
-            name: 'category_id',
-            type: 'uuid',
-            isNullable: true,
+            name: 'description',
+            type: 'varchar',
           },
           {
             name: 'created_at',
@@ -51,6 +41,6 @@ export default class CreateTransaction1612649292971
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('transaction');
+    await queryRunner.dropTable('thematic');
   }
 }

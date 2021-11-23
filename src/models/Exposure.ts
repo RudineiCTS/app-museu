@@ -6,10 +6,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Category from './Category';
+import Thematic from './Thematic';
 
-@Entity('transactions')
-class Transaction {
+@Entity('exposure')
+class Exposure {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -17,17 +17,20 @@ class Transaction {
   title: string;
 
   @Column()
-  type: 'income' | 'outcome';
+  subtitle: string;
 
   @Column()
-  value: number;
+  description: string;
 
   @Column()
-  category_id: string;
+  urlImage: string;
 
-  @ManyToOne(() => Category, category => category.transaction, { eager: true })
-  @JoinColumn({ name: 'category_id' })
-  category: Category;
+  @Column()
+  thematic_id: string;
+
+  @ManyToOne(() => Thematic, thematic => thematic.exposure)
+  @JoinColumn({ name: 'thematic_id' })
+  thematic: Thematic;
 
   @Column()
   created_at: Date;
@@ -36,7 +39,7 @@ class Transaction {
   updated_at: Date;
 }
 
-export default Transaction;
+export default Exposure;
 // @ManyToOne(() => Category)
 // @JoinColumn({ name: 'category_id' })
 // category: Category;

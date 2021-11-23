@@ -1,9 +1,11 @@
 import { Router } from 'express';
 
-import transactionsRouter from './transactions.routes';
+import exposureRouter from './exposures.routes';
+import thematicRouter from './thematics.routes';
 
 const routes = Router();
 
-routes.use('/transactions', transactionsRouter);
+routes.use('/exposures', exposureRouter);
+routes.use('/thematic', thematicRouter);
 
 export default routes;

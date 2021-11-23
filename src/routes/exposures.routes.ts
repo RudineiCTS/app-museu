@@ -14,7 +14,7 @@ const upload = multer(uploadConfig);
 
 exposureRouter.post('/', upload.single('file'), async (request, response) => {
   const { title, subtitle, description, thematic_id } = request.body;
-  const urlImage = request.file.path;
+  const urlImage = request.file.filename;
 
   const createExposureService = new CreateExposureService();
 
@@ -26,7 +26,7 @@ exposureRouter.post('/', upload.single('file'), async (request, response) => {
     title,
     subtitle,
     description,
-    urlImage,
+    urlImage: `https://app-museu.herokuapp.com/files/${urlImage}`,
     thematic_id,
   });
 

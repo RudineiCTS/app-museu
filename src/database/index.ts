@@ -1,3 +1,11 @@
-import { createConnection } from 'typeorm';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
-createConnection();
+async function connection() {
+  const options = await getConnectionOptions();
+  console.log(options);
+  await createConnection({
+    ...options,
+    extra: { ssl: { rejectUnauthorized: false } },
+  });
+}
+connection();

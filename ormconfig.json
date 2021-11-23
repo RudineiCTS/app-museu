@@ -1,13 +1,14 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "ec2-18-208-102-44.compute-1.amazonaws.com",
   "port": 5432,
-  "username": "postgres",
-  "password": "docker",
-  "database": "appmuseumdb",
+  "username": "orrpqyxaqylaar",
+  "password": "3171ffe9f5568ea8d29557622c33c4fe80a1dca995f22cdb8cc4f2b595678619",
+  "database": "dfift49h96a0j7",
   "entities": ["./src/models/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"
-  }
+  },
+  "extra": { "ssl": { "rejectUnauthorized": false } }
 }
